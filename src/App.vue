@@ -1,30 +1,59 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div>
+    <nav>
+      <router-link to="/">Accueil</router-link>
+      <router-link to="/library">Bibliothèque</router-link>
+      <router-link to="/profile">Profil</router-link>
+    </nav>
+    <router-view></router-view>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<style scoped>
+nav {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  background-color: #f8f8f8; /* Ajout d'un fond pour plus de lisibilité */
 }
 
-nav {
-  padding: 30px;
+.router-link-active {
+  font-weight: bold; /* Marquer la route active */
 }
 
 nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  position: relative;
+  color: black;
+  cursor: pointer;
+  font-size: 20px;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.25s;
 }
 
-nav a.router-link-exact-active {
-  color: #42b983;
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background-color: black;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+nav a:hover {
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
 }
 </style>
