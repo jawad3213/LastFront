@@ -4,12 +4,14 @@ const API_URL = "http://localhost:3000"; // Remplace par l'URL de ton backend
 
 const authService = {
   // ✅ Inscription d'un nouvel utilisateur
-  async register(nom, email, motDePasse) {
+  async register(nom, email, motDePasse, dateNaissance, lieuNaissance) {
     try {
       const response = await axios.post(`${API_URL}/inscription`, {
         nom,
         email,
-        motDePasse
+        motDePasse,
+        dateNaissance,
+        lieuNaissance
       });
       return response.data;
     } catch (error) {

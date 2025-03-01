@@ -1,25 +1,12 @@
 import { createStore } from 'vuex';
 
-import auth from "./auth"; // Importer le module auth
+import auth from "./auth";// Authentification
+import books from "./books"; // Bibliothèque
 
 const store = createStore({
   modules: {
-    auth, // Ajouter auth.js comme module Vuex
-  },
-  state() {
-    return {
-      user: { name: "Utilisateur", books: [] }
-    };
-  },
-  mutations: {
-    addBook(state, book) {
-      state.user.books.push(book);
-    }
-  },
-  actions: {
-    addBook(context, book) {
-      context.commit('addBook', book);
-    }
+    auth,
+    books,
   }
 });
 

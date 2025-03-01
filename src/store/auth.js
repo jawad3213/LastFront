@@ -3,6 +3,7 @@ import axios from "axios";
 const state = {
   user: null, // Utilisateur connecté
   token: localStorage.getItem("token") || null, // Stocker le token JWT
+  
 };
 
 const getters = {
@@ -28,7 +29,7 @@ const mutations = {
 const actions = {
   async login({ commit }, credentials) {
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/login", credentials);
+      const response = await axios.post("http://localhost:3000/api/auth/login", credentials);
       commit("SET_USER", response.data.user);
       commit("SET_TOKEN", response.data.token);
     } catch (error) {
@@ -38,7 +39,7 @@ const actions = {
 
   async register({ commit }, userData) {
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/inscription", userData);
+      const response = await axios.post("http://localhost:3000/api/auth/inscription", userData);
       commit("SET_USER", response.data.user);
       commit("SET_TOKEN", response.data.token);
     } catch (error) {
@@ -49,6 +50,15 @@ const actions = {
   logout({ commit }) {
     commit("LOGOUT");
   },
+
+  async resetPassword({ commit }, email) {
+    try {
+      await axios.post("http://localhost:3000/api/auth/reset-password", { email });
+      return { success: true, message: "Email de réinitialisation envoyé ✅" };
+    } catch (error) {
+      return { success: false, message: error.response?.data?.message || "Erreur lors de la réinitialisation ❌" };
+    }
+  }
 };
 
 export default {
